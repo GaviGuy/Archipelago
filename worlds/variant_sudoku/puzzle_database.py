@@ -74,5 +74,47 @@ PUZZLE_DATABASE: Dict = {
             "rating": 3,
             "id": 1090,
         },
+        {
+            "title": "Distinctive Shapes",
+            "author": "Moonsinh",
+            "link": "https://logic-masters.de/Raetselportal/Raetsel/zeigen.php?id=000M1G",
+            "rating": 1,
+            "id": 1100,
+        },
+        {
+            "title": "Dutch Quads On Tall Boxes",
+            "author": "Moonsinh",
+            "link": "https://logic-masters.de/Raetselportal/Raetsel/zeigen.php?id=000MED",
+            "rating": 1,
+            "id": 1110,
+        },
+        {
+            "title": "Low German Whisper?",
+            "author": "Moonsinh",
+            "link": "https://logic-masters.de/Raetselportal/Raetsel/zeigen.php?id=000T8S",
+            "rating": 3,
+            "id": 1120,
+        },
+        {
+            "title": "Spring Flower",
+            "author": "Moonsinh",
+            "link": "https://logic-masters.de/Raetselportal/Raetsel/zeigen.php?id=000SLH",
+            "rating": 3,
+            "id": 1130,
+        },
+        {
+            "title": "Distinct Neighbourhoods",
+            "author": "Moonsinh",
+            "link": "https://logic-masters.de/Raetselportal/Raetsel/zeigen.php?id=000PWN",
+            "rating": 3,
+            "id": 1140,
+        },
+        {
+            "title": "Of Angles and Diamons",
+            "author": "Moonsinh",
+            "link": "https://logic-masters.de/Raetselportal/Raetsel/zeigen.php?id=000Q83",
+            "rating": 3,
+            "id": 1150,
+        },
     ]
 }
