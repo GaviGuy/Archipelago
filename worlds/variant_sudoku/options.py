@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from Options import Choice, OptionGroup, PerGameCommonOptions, Range, OptionList, FreeText
+from Options import Choice, OptionGroup, PerGameCommonOptions, Range, FreeText
 
 class FillerCount(Range):
     """
@@ -132,8 +132,6 @@ class BossLink(FreeText):
 
     default = "https://logic-masters.de/Raetselportal/Raetsel/zeigen.php?id=______"
 
-#filler item settings
-
 class UsefulItemCount(Range):
     """
     How many filler items should be replaced with useful items instead?
@@ -145,18 +143,18 @@ class UsefulItemCount(Range):
     range_end = 10
     default = 1
 
-class FilteredTags(OptionList):
-    """
-    Puzzle tags to exclude when generating.
-    Filtering too many tags could cause generation to fail.
-    Valid tags are:
-    wawa, wawa, wawa, wawa, wawa, wawa, wawa, wawa
-    """
-    
-    valid_keys_casefold = True
-    valid_keys = {
-        "wawa", "wawa2", "wawa3"
-    }
+# class FilteredTags(OptionList):
+#     """
+#     Puzzle tags to exclude when generating.
+#     Filtering too many tags could cause generation to fail.
+#     Valid tags are:
+#     wawa, wawa, wawa, wawa, wawa, wawa, wawa, wawa
+#     """
+#
+#     valid_keys_casefold = True
+#     valid_keys = {
+#         "wawa", "wawa2", "wawa3"
+#     }
 
 @dataclass
 class VariantSudokuOptions(PerGameCommonOptions):

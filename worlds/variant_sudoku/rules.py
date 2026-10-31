@@ -19,8 +19,6 @@ def has_number_of_puzzles(puzzles: dict, number: int) -> Rule:
         rule_list.append(Has(name))
 
     ret = AtLeast(number, *rule_list)
-    print("BONUS ACCESS RULE, REQUIRES " + str(number) + "):")
-    print(ret)
     return ret
 
 def get_boss_access_rule(world: VariantSudokuWorld) -> Rule:
@@ -29,21 +27,17 @@ def get_boss_access_rule(world: VariantSudokuWorld) -> Rule:
         # must have enough key pieces
         return Has("Key Piece", world.options.boss_unlock_item_requirement.value)
 
-    # TODO: this is probably more elegant if I can base it on puzzles SOLVED instead of puzzles received
     elif world.options.boss_unlock_condition.value == 1:
-        print("attempting to work with puzzle requirement")
         # must have enough puzzle items
         return has_number_of_puzzles(world.SELECTED_PUZZLES["filler"],
                                      world.options.boss_unlock_puzzle_requirement.value)
 
     elif world.options.boss_unlock_condition.value == 2:
-        print("attempting to work with pillar requirement")
         # must have all pillars
         return has_number_of_puzzles(world.SELECTED_PUZZLES["pillars"],
                                      world.options.pillar_count.value)
 
     return False_()
-
 
 def set_all_rules(world: VariantSudokuWorld) -> None:
     set_all_location_rules(world)
@@ -71,8 +65,6 @@ def set_all_location_rules(world: VariantSudokuWorld) -> None:
     if world.options.boss_unlock_condition.value == 2:
         num_pillars = world.options.pillar_count.value
         bonus_per_puzzle = world.NUM_BONUS / num_pillars
-        print("RULES: NUM_BONUS = " + str(world.NUM_BONUS))
-        print("BONUSES PER PILLAR " + str(bonus_per_puzzle))
 
         # if this doesn't result in an integer, something has gone very wrong
         if int(bonus_per_puzzle) != bonus_per_puzzle:
@@ -99,8 +91,6 @@ def set_all_location_rules(world: VariantSudokuWorld) -> None:
 
     # For accessing the boss puzzle
     can_access_boss = get_boss_access_rule(world)
-
-    print(can_access_boss)
 
     boss_loc = puzzle_to_location_names(world.SELECTED_PUZZLES["boss"])
     for i in boss_loc:

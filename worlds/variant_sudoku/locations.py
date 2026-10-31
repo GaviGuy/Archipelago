@@ -4,7 +4,7 @@ from math import ceil
 
 from typing import TYPE_CHECKING
 
-from BaseClasses import ItemClassification, Location
+from BaseClasses import Location
 
 from .puzzle_database import PUZZLE_DATABASE
 
@@ -36,8 +36,6 @@ for i in PUZZLE_DATABASE["puzzles"]:
     names = puzzle_to_location_names(i)
     for j in range(len(names)):
         LOCATION_NAME_TO_ID[names[j]] = i["id"] + j
-
-#print(LOCATION_NAME_TO_ID)
 
 class VariantSudokuLocation(Location):
     game = "Variant Sudoku"
@@ -91,5 +89,3 @@ def create_regular_locations(world: VariantSudokuWorld) -> None:
 
     # Location(s) for the boss puzzle
     append_locations_by_puzzle(world, world.SELECTED_PUZZLES["boss"])
-
-    # do i want a location for the boss? send an item for winning..? as a bonus?
