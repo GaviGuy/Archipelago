@@ -24,6 +24,10 @@ FILLER_ITEMS = [
     "Renban Region"
 ]
 
+USEFUL_ITEMS = [
+    "Puzzle Reroll"
+]
+
 ITEM_NAME_TO_ID = {
     "Key Piece": 1,
 }
@@ -33,6 +37,10 @@ ITEM_NAME_TO_ID = {
 item_id = len(ITEM_NAME_TO_ID) + 1
 
 for i in FILLER_ITEMS:
+    ITEM_NAME_TO_ID[i] = item_id
+    item_id += 1
+
+for i in USEFUL_ITEMS:
     ITEM_NAME_TO_ID[i] = item_id
     item_id += 1
 
@@ -46,6 +54,9 @@ class VariantSudokuItem(Item):
 
 def get_random_filler_item_name(world: VariantSudokuWorld) -> str:
     return FILLER_ITEMS[world.random.randint(0, len(FILLER_ITEMS) - 1)]
+
+def get_random_useful_item_name(world: VariantSudokuWorld) -> str:
+    return USEFUL_ITEMS[world.random.randint(0, len(USEFUL_ITEMS) - 1)]
 
 
 def create_item_with_correct_classification(world, name) -> VariantSudokuItem:
@@ -86,6 +97,9 @@ def create_all_items(world: VariantSudokuWorld) -> None:
     # Filler
     num_filler = len(world.multiworld.get_unfilled_locations(world.player)) - len(itempool)
     for i in range(num_filler):
-        itempool.append(world.create_item(get_random_filler_item_name(world)))
+        if i < world.options.useful_item_count.value:
+            itempool.append(world.create_item(get_random_useful_item_name(world)))
+        else:
+            itempool.append(world.create_item(get_random_filler_item_name(world)))
 
     world.multiworld.itempool += itempool

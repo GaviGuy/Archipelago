@@ -134,6 +134,17 @@ class BossLink(FreeText):
 
 #filler item settings
 
+class UsefulItemCount(Range):
+    """
+    How many filler items should be replaced with useful items instead?
+    Actual number of useful items generated may be lower.
+    Possible useful items: Puzzle Reroll
+    """
+
+    range_start = 0
+    range_end = 10
+    default = 1
+
 class FilteredTags(OptionList):
     """
     Puzzle tags to exclude when generating.
@@ -160,6 +171,7 @@ class VariantSudokuOptions(PerGameCommonOptions):
     pillar_count: PillarCount
     pillar_difficulty: PillarDifficulty
     boss_link: BossLink
+    useful_item_count: UsefulItemCount
     #filtered_tags: FilteredTags
 
 option_groups = [
@@ -172,8 +184,8 @@ option_groups = [
         "Boss Options",
         [BossDifficulty, BossUnlockCondition, BossUnlockItemRequirement,BossUnlockPuzzleRequirement, BossLink, PillarCount, PillarDifficulty],
     ),
-    #OptionGroup(
-    #    "Miscellaneous Options",
-    #    [FilteredTags],
-    #)
+    OptionGroup(
+        "Miscellaneous Options",
+        [UsefulItemCount],
+    )
 ]
