@@ -63,6 +63,8 @@ def create_item_with_correct_classification(world, name) -> VariantSudokuItem:
     classification = ItemClassification.progression
     if name in FILLER_ITEMS:
         classification = ItemClassification.filler
+    if name in USEFUL_ITEMS:
+        classification = ItemClassification.useful
 
     return VariantSudokuItem(name, classification, ITEM_NAME_TO_ID[name], world.player)
 

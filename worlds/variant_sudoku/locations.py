@@ -4,7 +4,7 @@ from math import ceil
 
 from typing import TYPE_CHECKING
 
-from BaseClasses import Location
+from BaseClasses import Location, LocationProgressType
 
 from .puzzle_database import PUZZLE_DATABASE
 
@@ -40,10 +40,14 @@ for i in PUZZLE_DATABASE["puzzles"]:
 class VariantSudokuLocation(Location):
     game = "Variant Sudoku"
 
-def append_locations_by_puzzle(world: VariantSudokuWorld, puzzle: str) -> None:
+def append_locations_by_puzzle(world: VariantSudokuWorld, puzzle: str,
+                               classification: LocationProgressType = LocationProgressType.DEFAULT) -> None:
+
     locs = puzzle_to_location_names(puzzle)
     for i in locs:
         new_loc = VariantSudokuLocation(world.player, i, LOCATION_NAME_TO_ID[i], world.get_region("Start"))
+
+        new_loc.progress_type = classification
         world.get_region("Start").locations.append(new_loc)
 
 def create_all_locations(world: VariantSudokuWorld) -> None:
@@ -88,4 +92,4 @@ def create_regular_locations(world: VariantSudokuWorld) -> None:
             append_locations_by_puzzle(world, i)
 
     # Location(s) for the boss puzzle
-    append_locations_by_puzzle(world, world.SELECTED_PUZZLES["boss"])
+    append_locations_by_puzzle(world, world.SELECTED_PUZZLES["boss"], LocationProgressType.EXCLUDED)
